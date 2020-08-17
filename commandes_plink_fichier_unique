@@ -1,0 +1,67 @@
+# EXTRACTION de SNP à partir d'une liste : --extract
+####################################################
+#(contraire=exclude)
+./plink --noweb --file FID19_IID827ATL_1012_SNP --extract List_LFMM_46outliers.txt --allow-no-sex --recode --out FID19_IID_LFMM46outliers_827ind
+
+./plink --noweb --file FID_IID_DLAB1012loci_827ind --extract MED_ATL_introgressed_66loci.txt --allow-no-sex --recode --out FID_IID_827DLAB_66intro_827ind
+
+./plink --noweb --file Merged_827_ChipsATL_10_GenomesMED_1012_SNPs_NoRep_23reg --extract List_183outliersATLMED_lositan_bayescan.txt --allow-no-sex --recode --out FID_IID_183outliers_837ALTMED_23reg
+
+./plink --noweb --file Merged_827_ChipsATL_10_GenomesMED_1012_SNPs_NoRep_23reg --exclude List_183outliersATLMED_lositan_bayescan.txt --allow-no-sex --recode --out FID_IID_829neutral_837ALTMED_23reg
+
+
+# EXTRACTION d'individus à partir d'une liste : --keep
+######################################################
+# (contraire=remove)
+./plink --noweb --file FID_IID_DLAB1012loci_827ind --allow-no-sex --keep List_ind_hiv14.txt --recode --out FID_IID_DLAB1012loci_827ind_hiv14
+
+# supprimer les individus de SINE à partir d'une liste préalablement établie
+./plink --noweb --file FID_IID_DLAB1012loci_827ind --allow-no-sex --remove List_ind_SINE.txt --recode --out FID_IID_DLAB1012loci_800ind_sansSINE
+
+./plink --noweb --file FID_IID_DLAB1012loci_800ind_sansSINE --exclude List_32outliersATL_lositan_bayescan.txt --allow-no-sex --recode --out FID_IID_980neutralATL_800ind_sansSINE
+
+OU
+
+# sortie bed bim bam
+./plink --noweb --file FID_IID_827ATL_980neutralATL --allow-no-sex --remove List_ind_SINE.txt --make-bed --out FID_IID_980neutralATL_800ind_sansSINE
+
+# sortie ped map
+./plink --noweb --file FID_IID_827ATL_980neutralATL --allow-no-sex --remove List_ind_SINE.txt --recode --out FID_IID_980neutralATL_800ind_sansSINE
+
+—
+
+./plink --noweb --file FID_IID_827ATL_32outliersATL --allow-no-sex --remove List_ind_SINE.txt --recode --out FID_IID_32outliersATL_800ind_sansSINE
+
+# extraire les 32 outliers ATL
+./plink --noweb --file FID_IID_DLAB1012loci_800ind_sansSINE_4pops --extract List_32outliersATL_lositan_bayescan.txt --allow-no-sex --recode --out FID_IID_32outliersATL_800ind_sansSINE_4pops
+
+# extraire les 980 neutral ATL
+./plink --noweb --file FID_IID_DLAB1012loci_800ind_sansSINE_4pops --exclude List_32outliersATL_lositan_bayescan.txt --allow-no-sex --recode --out FID_IID_980neutralATL_800ind_sansSINE_4pops
+
+
+
+# Consersion PED -> BED
+#######################
+./plink --noweb --file Merged_827_ChipsATL_10_GenomesMED_1012_SNPs_NoRep --make-bed --recode --out output_name
+
+
+# recode FID-IID
+################
+# change ID codes for individuals specified in recoded.txt, which should be in the format of four columnds per row: old FID, old IID, new FID, new IID and run this command:
+
+./plink --noweb --allow-no-sex --file Merged_827_ChipsATL_10_GenomesMED_1012_SNPs_NoRep --update-ids recoded_21reg_VIGO_CORU.txt --recode --tab --out Merged_827_ChipsATL_10_GenomesMED_1012_SNPs_NoRep_21reg
+
+
+# CALCUL des fréquences alléliques par localité (strates)
+#########################################################
+# à partir d'un fichier ped
+# composer un fichier de strates:
+# FID IID CNRW
+# FID IID ASTU etc. (attention il faut que les couples FID-IID soient les mêmes que dans le fichier ped utilisé)
+
+./plink --noweb --file FID_IID_DLAB1012loci_827ind --within strat_21reg_VIGO_CORO.txt --allow-no-sex --freq
+
+
+
+
+
