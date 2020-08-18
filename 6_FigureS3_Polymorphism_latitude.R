@@ -1,5 +1,3 @@
-setwd("~/sync/poissons/genetique_poissons/genotypage_bar/resultats/analyses_finales/polymorphisme")
-
 library(MASS)
 library(polynom)
 library(ggplot2)
@@ -9,13 +7,13 @@ library(gridExtra)
 library(tidyr)
 library(dplyr)
 
+setwd("/Volumes/data/sync/poissons/genetique_poissons/genotypage_bar/resultats/analyses_finales/polymorphisme")
 "polymorph_latitude_pops_827ATL1012loci.csv" %>% read.csv() %>% as_tibble() -> data_polym
 
 # %polymoprhisme en fonction de N
 
 data_polym %>% mutate_if(is.factor,as.numeric) -> data_polym
 dim(data_polym) # [1] 20  5
-head(data_polym)
 attach(data_polym)
 
 
@@ -56,13 +54,10 @@ b <- arrangeGrob(haut_droite, top = textGrob("b", x = unit(0, "npc")
                                              , y   = unit(1, "npc"), just=c("left","top"),
                                              gp=gpar(col="black", fontsize=18, fontfamily="Times Roman")))
 c <- arrangeGrob(bas_gauche, top = textGrob("c", x = unit(0, "npc")
-                                             , y   = unit(1, "npc"), just=c("left","top"),
-                                             gp=gpar(col="black", fontsize=18, fontfamily="Times Roman")))
+                                            , y   = unit(1, "npc"), just=c("left","top"),
+                                            gp=gpar(col="black", fontsize=18, fontfamily="Times Roman")))
 d <- arrangeGrob(bas_droite, top = textGrob("d", x = unit(0, "npc")
-                                             , y   = unit(1, "npc"), just=c("left","top"),
-                                             gp=gpar(col="black", fontsize=18, fontfamily="Times Roman")))
+                                            , y   = unit(1, "npc"), just=c("left","top"),
+                                            gp=gpar(col="black", fontsize=18, fontfamily="Times Roman")))
 
 grid.arrange(a,b,c,d,nrow=2, ncol=2)
-
-
-

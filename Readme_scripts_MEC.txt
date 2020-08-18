@@ -1,32 +1,125 @@
 1_argyle_Plink.R
-
-Script in R and bash to extract and filter SNPs from "Final_report.txt" (Illumina Bead Studio ouput) to Plink files.
-
-Morgan, A. P. (2016). argyle: an R package for analysis of Illumina genotyping arrays. G3: Genes, Genomes, Genetics, 6(2), 281-286.
-
-Purcell, S., Neale, B., Todd-Brown, K., Thomas, L., Ferreira, M. A., Bender, D., ... & Sham, P. C. (2007). PLINK: a tool set for whole-genome association and population-based linkage analyses. The American journal of human genetics, 81(3), 559-575.
+## data files needed : Marker_map.txt
 
 
 2_Figure2_Het_RDA_IBD_Psi
+## data files needed :  
+polymorph_latitude_pops_827ATL1012loci.csv
+IBD_1012loci_21sreg.csv
+IBD_neutres_outliers_2datasets.csv
+IBD_sud_GONB.csv
+IBD_nord_GONB.csv
+FID_IID_1012loci_827ATL_21reg.gtx
+827_RDA_factors.csv
+Merged_827_Chips_14_Genomes_1012_SNPs_NoRep.bed
+Merged_827_Chips_14_Genomes_1012_SNPs_NoRep.bim
+Merged_827_Chips_14_Genomes_1012_SNPs_NoRep.fam
+coords_file_no_outgroup_NORD_CS_CH_IS_NS.csv
+
 
 3_Figure3_Individual_ancestries
+## data files needed : 
+Merged_827_ChipsATL_10_GenomesMED_1012_SNPs_NoRep.bed
+Merged_827_ChipsATL_10_GenomesMED_1012_SNPs_NoRep.map 
+noms_837DLAB_ATLMED_ICESNAME_sreg_xy.csv
+dist_SINE_long_lat_23reg_VIGO_CORO.csv
+Merged_827_Chips_10_Genomes_1012_SNPs_NoRep.2.Q
+Merged_827_Chips_10_Genomes_1012_SNPs_NoRep.2.Q_se
+
 
 4_Figure4_Introgression_breaks
+## data files needed : 
+noms_837DLAB_ATLMED_ICESNAME_sreg_xy.csv
+dist_SINE_long_lat_23reg_VIGO_CORO.csv
+Merged_827_Chips_10_Genomes_1012_SNPs_NoRep.2.Q
+Merged_827_Chips_10_Genomes_1012_SNPs_NoRep.2.Q_se
+mean_ancestrality_distSINE.csv
+
 
 5_Figure5_Introgression_breaks_neutral_ouliers
+## data files needed : 
+noms_837DLAB_ATLMED_ICESNAME_sreg_xy.csv
+noms_827DLAB_ICESNAME_sreg_xy.csv
+FID_IID_52outliers_837ALTMED_23reg.gtx
+FID_IID_960neutral_837ALTMED_23reg.gtx
+FID_IID_1012loci_837ALTMED_23reg.gtx
+FID_IID_1012loci_827ATL_21reg.gtx
+FID_IID_32outliers_827ATL_21reg.gtx
+FID_IID_980neutral_827ATL_21reg.gtx
+Freq_alleliq_827ATL_1012loci_21reg.csv
+dist_SINE_long_lat_21reg.csv
+list_52outliers_ATLMED_qval0.01_bayescan.txt
+
 
 6_FigureS3_Polymorphism_latitude
+## data files needed : 
+polymorph_latitude_pops_827ATL1012loci.csv
+
 
 7_FigureS4_IBD_patterns
+## data files needed : 
+IBD_neutres_outliers_1dataset.csv
+IBD_neutres_outliers_2datasets.csv
+IBD_sud_GONB.csv
+IBD_nord_GONB.csv
+
 
 8_FigureS5_Individual_ancestry_on_31_locations
+## data files needed : 
+res_admixture_FID_IID_1012loci_761ind_31CLST.csv
+dist_SINE_long_lat_31reg.csv
+Freq_alleliq_761ATL_52outliersATLMED_31reg.csv
+
 
 9_FigureS6_Genomic_scans
+## data files needed : 
+Bayescan_827DLAB_1012loci.txt
+FID_IID_DLAB1012loci_827ind_21reg.ped
+FID_IID_DLAB1012loci_827ind_21reg.map
+
 
 10_FigureS7_Introgression_breaks_and_genomic_divergence
+## data files needed : 
+Freq_alleliq_827ATL_1012loci_21reg.csv
+dist_SINE_long_lat_21reg.csv
+mean_ancestrality_distSINE.csv
+list_7outliers_ATL_qval0.05_bayescan.txt
+list_52outliers_ATLMED_qval0.01_bayescan.txt
+Freq_alleliq_761ATL_10MED_1012loci_2CLST.csv
+Merged_827_Chips_14_Genomes_1012_SNPs_NoRep.2.P.csv
+
 
 11_TableS3-S4-S5_Pairwise_Fst_21localities
+## data files needed : 
+noms_827DLAB_ICESNAME_sreg_xy.csv
+noms_837DLAB_ATLMED_ICESNAME_sreg_xy.csv
+FID_IID_1012loci_827ATL_21reg.gtx
+FID_IID_32outliers_827ATL_21reg.gtx
+FID_IID_980neutral_827ATL_21reg.gtx
+FID_IID_52outliers_837ALTMED_23reg.gtx
+FID_IID_32outliers_827ATL_21reg.gtx
+
 
 12_TableS6_Pairwise_Fst_7regions
+## data files needed : 
+noms_827DLAB_ICESNAME_sreg_xy.csv
+noms_837DLAB_ATLMED_ICESNAME_sreg_xy.csv
+FID_IID_1012loci_837ALTMED_23reg.gtx
+FID_IID_52outliers_837ALTMED_23reg.gtx
+FID_IID_960neutral_837ALTMED_23reg.gtx
+FID_IID_32outliers_827ATL_21reg.gtx
+FID_IID_980neutral_827ATL_21reg.gtx
+FID_IID_1012loci_827ATL_21reg.gtx
+
 
 13_TableS7_Mantel_test
+## data files needed : 
+noms_827DLAB_ICESNAME_sreg_xy.csv
+noms_837DLAB_ICESNAME_sreg_xy.csv
+FID_IID_32outliers_827ATL_21reg.gtx
+FID_IID_980neutral_827ATL_21reg.gtx
+9nordGONB_geoDist.csv
+12sudGONB_geoDist.csv
+7Gascogne_geoDist.csv
+5Portugal_geoDist.csv
+

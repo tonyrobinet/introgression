@@ -17,20 +17,20 @@ cl <- makeCluster(no_cores)
 
 setwd("~/sync/poissons/genetique_poissons/genotypage_bar/resultats/analyses_finales/fichiers_ped_gtx/21localities/")
 geno_827ATL_1012loci_21sreg <- read.genetix("FID_IID_1012loci_827ATL_21reg.gtx")
-noms_827DLAB$CLST -> geno_827ATL_1012loci_21sreg$pop
+as.factor(noms_827DLAB$CLST) -> geno_827ATL_1012loci_21sreg$pop
 geno_827ATL_32outliers_21sreg <- read.genetix("FID_IID_32outliers_827ATL_21reg.gtx")
-noms_827DLAB$CLST -> geno_827ATL_32outliers_21sreg$pop
+as.factor(noms_827DLAB$CLST) -> geno_827ATL_32outliers_21sreg$pop
 geno_827ATL_980neutral_21sreg <- read.genetix("FID_IID_980neutral_827ATL_21reg.gtx")
-noms_827DLAB$CLST -> geno_827ATL_980neutral_21sreg$pop
+as.factor(noms_827DLAB$CLST) -> geno_827ATL_980neutral_21sreg$pop
 
 geno_827ATL_10MED_52outliers_9reg <- read.genetix("~/sync/poissons/genetique_poissons/genotypage_bar/resultats/analyses_finales/fichiers_ped_gtx/23localities/FID_IID_52outliers_837ALTMED_23reg.gtx")
-noms_827ATL_10MED$reg -> geno_827ATL_10MED_52outliers_9reg$pop
+as.factor(noms_827ATL_10MED$reg) -> geno_827ATL_10MED_52outliers_9reg$pop
 
 geno_827ATL_32outliers_21sreg <- read.genetix("~/sync/poissons/genetique_poissons/genotypage_bar/resultats/analyses_finales/fichiers_ped_gtx/21localities/FID_IID_32outliers_827ATL_21reg.gtx")
-noms_827DLAB$reg -> geno_827ATL_32outliers_21sreg$pop
+as.factor(noms_827DLAB$reg) -> geno_827ATL_32outliers_21sreg$pop
 
 
-# Fst global sur tous les loci
+# Global Fst on all loci
 x=pvalues=mat.obs=mat.perm=NPERM=allTests=NULL
 x <- geno_827ATL_1012loci_21sreg
 mat.obs <- pairwise.fst(x, res.type="matrix") # compute original Fst matrix
@@ -48,7 +48,7 @@ write.table(pvalues,row.names=T,col.names=T,sep="\t",quote=F,"~/sync/poissons/ge
 as.dist(mat.obs, upper=T)
 write.csv(mat.obs, "Fst_827ATL_1012loci_21sreg.csv")
 
-# Fst sur outliers 
+# Fst on outliers 
 x <- geno_827ATL_10MED_52outliers_9reg
 mat.obs <- wc(x, diploid = TRUE)
 NBPERM <- 5000 # this is the number of permutations used for the p-values; for a publication at least 999 would be required.
@@ -90,7 +90,7 @@ bind_rows(MEDATL_outliers_tbl,MEDATL_neutres_tbl) -> data_bylocus_MEDATL
 cut(data_bylocus_MEDATL$Fst, seq(from = 0, to = 1, by = 0.05)) -> data_bylocus_MEDATL$cut
 with(data_bylocus_MEDATL, table(cut)) %>% as_tibble() -> freq_occ_Fst_ATLMED_52outliers_960neutres
 
-## sur les 1012 loci 21 sreg
+## on the 1012 loci within 21 sreg
 x <- geno_827ATL_1012loci_21sreg
 (mat.obs <- pairwise.fst(x, res.type="matrix")) # compute original Fst matrix
 NBPERM <- 5000 # this is the number of permutations used for the p-values; for a publication at least 999 would be required.
@@ -108,7 +108,7 @@ write.table(pvalues_827ATL_1012loci_21sreg,row.names=T,col.names=T,sep="\t",quot
 as.dist(mat.obs)->Fst_827ATL_1012loci_21sreg
 write.csv(mat.obs, "Fst_827ATL_1012loci_21sreg.csv")
 
-## sur 32 outliers 21sreg
+## on 32 outliers within 21sreg
 x<-geno_827ATL_32outliers_21sreg
 (mat.obs <- pairwise.fst(x, res.type="matrix")) # compute original Fst matrix
 NBPERM <- 5000 # this is the number of permutations used for the p-values; for a publication at least 999 would be required.
@@ -126,7 +126,7 @@ write.table(pvalues_827ATL_32outliers_21sreg,row.names=T,col.names=T,sep="\t",qu
 as.dist(mat.obs)->Fst_827ATL_32outliers_21sreg
 write.csv(mat.obs, "Fst_827ATL_32outliers_21sreg.csv")
 
-## sur 980 neutral 21sreg
+## on 980 neutral within 21sreg
 x<-geno_827ATL_980neutral_21sreg
 (mat.obs <- pairwise.fst(x, res.type="matrix")) # compute original Fst matrix
 NBPERM <- 5000 # this is the number of permutations used for the p-values; for a publication at least 999 would be required.
@@ -144,7 +144,7 @@ write.table(pvalues_827ATL_980neutral_21sreg,row.names=T,col.names=T,sep="\t",qu
 as.dist(mat.obs)->Fst_827ATL_980neutral_21sreg
 write.csv(mat.obs, "Fst_827ATL_980neutral_21sreg.csv")
 
-## sur 827ATL 10 MED 183 outliers 23sreg
+## on 827ATL 10 MED 183 outliers within 23sreg
 x<-geno_827ATL_10MED_183outliers_23sreg
 mat.obs <- pairwise.fst(x, res.type="matrix") # compute original Fst matrix
 write.csv(mat.obs, "Fst_827ATL_10MED_183outliers.csv")
@@ -162,7 +162,7 @@ setwd("~/sync/genetique_poissons/genotypage_bar/resultats/analyses_finales/Fst/2
 write.table(pvalues_827ATL_10MED_183outliers,row.names=T,col.names=T,sep="\t",quote=F,"pvalues_827ATL_10MED_183outliers.txt")
 as.dist(mat.obs)->Fst_827ATL_10MED_183outliers_23reg
 
-## sur 827ATL 10 MED 829 neutral 23sreg
+## on 827ATL 10 MED 829 neutral within 23sreg
 x<-geno_827ATL_10MED_829neutral_23sreg
 mat.obs <- pairwise.fst(x, res.type="matrix")
 NBPERM <- 5000
